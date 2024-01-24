@@ -1,0 +1,21 @@
+import re
+
+def normalize_phone(phone_number =input("Input phone: ")):
+    # Видаляємо всі символи, крім цифр та '+'
+    cleaned_number = re.sub(r'[^0-9+]', '', phone_number)
+    # Перевірка, чи номер починається з '+'
+    if cleaned_number.startswith('+'):
+        # Якщо так, перевіряємо чи міжнародний код - '+38'. Якщо ні, замінюємо його.
+        if cleaned_number[:3] != '+38':
+            cleaned_number = '+38' + cleaned_number[1:]
+        #Якщо починається з 38, але без "+" 
+    elif cleaned_number.startswith('38'):
+         cleaned_number = '+' + cleaned_number
+    else:
+        # Якщо номер не починається з '+', додаємо '+38'
+        cleaned_number = '+38' + cleaned_number
+
+    return cleaned_number
+
+sanitized_numbers = normalize_phone()
+print("Нормалізований номер телефона для SMS-розсилки:", sanitized_numbers)
