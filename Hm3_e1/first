@@ -1,0 +1,19 @@
+import datetime
+from datetime import datetime
+
+def get_days_from_today(date=input("Input date yyyy-mm-dd: ")):
+    try:
+        # Перетворення рядка дати у форматі 'РРРР-ММ-ДД' у об'єкт datetime
+        input_date = datetime.strptime(date, '%Y-%m-%d')
+        # Отримання поточної дати
+        current_date = datetime.today()
+        # Розрахунок різниці у днях
+        difference = current_date - input_date
+        print(input_date)
+        print(current_date)
+        print(difference.days)
+    except ValueError:
+        # Обробка винятку у разі неправильного формату вхідних даних
+     print (f"Неправильний формат дати. Використовуйте формат 'yyyy-mm-dd'.")
+get_days_from_today()
+
